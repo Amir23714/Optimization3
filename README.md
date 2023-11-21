@@ -88,5 +88,5 @@ The method is not applicable!
 When the amount is in supply != amount in demand
 
 ```plaintext
-The method is not applicable!
+The problem is not balanced! 
 ```
