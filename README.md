@@ -31,7 +31,7 @@ Here is an example of the input:
 ```plaintext
 Input the supply vector for your transportation problem:
 300 400 500
-Input the demand vector for your transportation problem:
+Input the demand vector for your transportation problem
 250 350 400 200
 Input the cost table for your transportation problem:
 3 1 7 4
@@ -45,6 +45,14 @@ The program provides the solutions for the transportation problem using three di
 Here is an example of the output:
 
 ```plaintext
++--------+-----+-----+-----+-----+--------+
+|        |  D1 |  D2 |  D3 |  D4 | Supply |
++--------+-----+-----+-----+-----+--------+
+|   S1   |  3  |  1  |  7  |  4  |  300   |
+|   S2   |  2  |  6  |  5  |  9  |  400   |
+|   S3   |  8  |  3  |  3  |  2  |  500   |
+| Demand | 250 | 350 | 400 | 200 |        |
++--------+-----+-----+-----+-----+--------+
 Answer for North-West corner method is:
 +---+-----+-----+-----+-----+
 | № |  1  |  2  |  3  |  4  |
@@ -52,7 +60,6 @@ Answer for North-West corner method is:
 | 2 |  0  | 300 | 100 |  0  |
 | 3 |  0  |  0  | 300 | 200 |
 +---+-----+-----+-----+-----+
-
 Answer for Vogel's approximation method is:
 +---+-----+-----+-----+-----+
 | № |  1  |  2  |  3  |  4  |
@@ -60,7 +67,6 @@ Answer for Vogel's approximation method is:
 | 2 | 250 |  0  | 150 |  0  |
 | 3 |  0  |  50 | 250 | 200 |
 +---+-----+-----+-----+-----+
-
 Answer for Russell's approximation method is:
 +---+-----+-----+-----+-----+
 | № |  1  |  2  |  3  |  4  |
@@ -71,3 +77,16 @@ Answer for Russell's approximation method is:
 ```
 
 The numbers in the table represent the optimal amounts to be transported from each supplier to each consumer.
+
+## Not applicable/balanced
+When there is at least one negative number in the table or in the supply or demand vectors
+
+```plaintext
+The method is not applicable!
+```
+
+When the amount is in supply != amount in demand
+
+```plaintext
+The method is not applicable!
+```
