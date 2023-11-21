@@ -113,8 +113,9 @@ def vogel_approximation_method(grid, supply, demand):
                                 grid[ind2] = [INF for _ in range(m)]
                             break
                     break
-        # Return the initial solution matrix
+    # Return the initial solution matrix
     return initial_solution
+
 
 # A function to solve the transportation problem using Russell's approximation problem
 def russell_approximation_method(grid, supply, demand):
@@ -193,6 +194,27 @@ def print_answer(table):
     print(ans)
 
 
+# Special function for beautiful demonstrate parameter table
+def print_transportation_input(S, C, D):
+    table = PrettyTable()
+
+    # Add headers for columns
+    table.field_names = [" "] + [f"D{i+1}" for i in range(len(D))]
+
+    # Add cost matrix
+    for i in range(len(C)):
+        table.add_row([f"S{i+1}"] + C[i])
+
+    # Add supply coefficients
+    table.add_column("Supply", S)
+
+    # Add demand coefficients
+    table.add_row(["Demand"] + D + [" "])
+
+    # Print the table
+    print(table)
+
+
 # Input data
 print("Input the supply vector for your transportation problem:")
 supply = list(map(int, input().split()))
@@ -205,16 +227,35 @@ print("Input the cost table for your transportation problem:")
 for i in range(len(supply)):
     grid[i] = list(map(int, input().split()))
 
+# Checking for the applicability of the solution
+for i in range(len(grid)):
+    for j in range(len(grid[i])):
+        if grid[i][j] < 0:
+            print("The method is not applicable!")
+for i in supply:
+    if i < 0:
+        print("The method is not applicable!")
+for i in demand:
+    if i < 0:
+        print("The method is not applicable!")
+
+# Checking the balance of the problem
+if sum(supply) != sum(demand):
+    print("The problem is not balanced!")
+    exit(0)
+
 # Running all methods for the inputted data
 res1 = north_west_corner_method(copy.deepcopy(grid), supply.copy(), demand.copy())
 res2 = vogel_approximation_method(copy.deepcopy(grid), supply.copy(), demand.copy())
 res3 = russell_approximation_method(copy.deepcopy(grid), supply.copy(), demand.copy())
 
-# Output answers for all methods
+# Print input parameter table
+print_transportation_input(supply, grid, demand)
+
+# Print answers for all methods
 print("Answer for North-West corner method is:")
 print_answer(res1)
 print("Answer for Vogel's approximation method is:")
 print_answer(res2)
 print("Answer for Russell's approximation method is:")
 print_answer(res3)
-
